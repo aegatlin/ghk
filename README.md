@@ -1,38 +1,37 @@
 # ghk
 
-`ghk` solves the problem of consistent git hooks within a single repository.
+`ghk` is a simple git hooks manager.
+
+At it's core all it does is symlink whatever files are in `.ghk` into
+`.git/hooks`.
+
+Some additional niceties include:
+
+- stripping extensions (not yet)
+
+This seems nice because you can get syntax highlighting and more. You can write,
+`pre-commit.sh` and have it stripped to `pre-commit` on symlink.
+
+- verifying `.ghk` (not yet)
+
+This seems nice because it can keep your hooks healthy. Typos, etc., can be
+avoided. Basically, it can error out if things aren't perfect
+
+- finding git hooks defined elsewhere (not yet)
+
+In theory you could find git hooks in language and framework dependent ways.
+E.g., you could defined them in `package.hooks` in javascript projects.
 
 ## Intro to git hooks
 
-Git hooks are scripts in `.git/hooks` that git will trigger at certain points in
-git's execution. These points are essentially life-cycle events that git allows
-you to hook into, like `publish`, `pre-commit`, etc.
-
-See `git help hooks` for more information.
-
-## How ghk works 
-
-When you run `ghk` within a repository, the following will happen.
-
-1. Find the repo's git hooks
-
-You can store a directory of scripts, e.g., `.ghk/pre-commit`. Or, if `ghk`
-supports it, you can use a language or framework specific location, e.g., within
-`package.json` `ghk.pre-commit`.
-
-2. Enable `.git/hooks` based on findings
-
-`ghk` can do a few things here. The simplest is linking your directory or scripts directly to
-`.git/hooks`. If you are using a language or framework specific location, then the process will
-depend on the specifics on where and how it is defined. For example, if the scripts are in `package.json` 
-`ghk.pre-commit` as a string, `ghk` will create `.git/hooks/pre-commit` with that string as the content.
+See `git help hooks`.
 
 ## Usage
 
-On the command line run `ghk`. That's it!
+1. Define a `.ghk` folder of git hooks in your repo root
+1. Run `ghk` in your repo root
 
 ## Installation
 
-### Rust
-
-`cargo install ghk`
+Is none for now. It's Rust so you can `cargo install --git ...` if you want to
+experiement with the repo.
